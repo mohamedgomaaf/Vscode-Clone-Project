@@ -3,6 +3,9 @@ import FileTreeSlice from "./features/FileTreeSlice";
 
 export const store = configureStore({
   reducer: {
-    fileTree: FileTreeSlice,
+    tree: FileTreeSlice,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
