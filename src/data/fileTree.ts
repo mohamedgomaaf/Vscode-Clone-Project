@@ -15,14 +15,20 @@ export const fileTree: IFile = {
             {
               name: "react.js",
               isFolder: false,
-            }
+            },
           ],
         },
       ],
     },
     {
-      name: "index.html",
-      isFolder: false,
+      name: "Public",
+      isFolder: true,
+      children: [
+        {
+          name: "index.html",
+          isFolder: false,
+        },
+      ],
     },
   ],
 };

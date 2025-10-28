@@ -1,14 +1,10 @@
-import FileComponent from './components/FileComponent'
+import RecursiveComponent from './components/RecursiveComponent'
 import { fileTree } from './data/fileTree'
 
   function App() {
     return (
-      <div>
-        {
-          fileTree.children && fileTree.children?.map((file, index) => (
-            <FileComponent isFolder={file.isFolder} filename={file.name} key={index} />
-          ))
-        }
+      <div className='my-5'>
+       <RecursiveComponent fileTree={fileTree} />
       </div>
     )
   }
