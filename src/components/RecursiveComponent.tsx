@@ -30,7 +30,7 @@ function RecursiveComponent({ fileTree }: IProps) {
   };
 
   return (
-    <div className='mb-2 ml-2 cursor-pointer'>
+    <div className='my-2 ml-2 cursor-pointer'>
       <div className={`flex items-center mb-1 ${isFolder ? '' : 'ml-4'}`} onClick={() => { handleClick(fileTree) }}>
         {isFolder ? isOpen ? <BottomArrowIcon /> : <RightArrowIcon /> : null}
         <span className='mr-2'><RenderFileIcon filename={name} isFolder={isFolder} isOpen={isOpen} /></span>
