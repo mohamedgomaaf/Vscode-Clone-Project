@@ -2,6 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { IFile } from "../../interfaces";
 
 interface IClickedFile {
+  activeTabId: string | null;
   filename: string;
   fileContent: string | undefined;
 }
@@ -13,6 +14,7 @@ interface IInitialState {
 const initialState: IInitialState = {
   openFiles: [],
   clickedFile: {
+    activeTabId: null,
     filename: "",
     fileContent: "",
   },
