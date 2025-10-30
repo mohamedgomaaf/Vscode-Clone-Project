@@ -33,10 +33,11 @@ function OpenedFilesBarTab({ file }: IProps) {
   );
  };
 
+
  return (
   <div
    className={`max-w-screen-md flex items-center p-2 border-t-2
-   ${activeTabId == file.id ? "border-[#cf6ccf]  " : "border-transparent"} `}
+   ${activeTabId == file.id ? "border-[#cf6ccf]" : "border-transparent"} `}
    onClick={() => handleClick(file)}
   >
    <RenderFileIcon filename={file.name} isFolder={file.isFolder} />
