@@ -5,7 +5,6 @@ import ResizablePanel from './components/ResizablePanel'
 import { fileTree } from './data/fileTree'
 import type { RootState } from './app/store'
 import WelcomeTab from './components/WelcomeTab'
-import ContextMenu from './components/ui/ContextMenu'
 
 function App() {
   const { openFiles } = useSelector(({ tree }: RootState) => tree)
