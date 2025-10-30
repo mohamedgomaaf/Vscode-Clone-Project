@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenFilesAction } from "../../app/features/FileTreeSlice";
+import { setClickedFileAction, setOpenFilesAction } from "../../app/features/FileTreeSlice";
 import type { RootState } from "../../app/store";
 
 interface IProps {
@@ -14,14 +14,24 @@ interface IProps {
 function ContextMenu({ position: { x, y }, setShowMenu }: IProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch()
-  const { openFiles, clickedFile } = useSelector((state: RootState) => state.tree)
-  const filtered = openFiles.filter(file => file.id !== clickedFile?.activeTabId)
+  const { openFiles, tabIdToRemove } = useSelector((state: RootState) => state.tree)
+  const filtered = openFiles.filter((file) => file.id !== tabIdToRemove);
+
 
   const onCloseAll = () => {
     dispatch(setOpenFilesAction([]))
   }
   const onClose = () => {
-    dispatch(setOpenFilesAction(filtered))
+    const { id, name, content } = filtered.length > 0 ? filtered[filtered.length - 1] : { id: null, name: "", content: "" };
+    dispatch(setOpenFilesAction(filtered));
+    dispatch(
+      setClickedFileAction({
+        filename: name,
+        fileContent: content,
+        activeTabId: id,
+      })
+    );
+    dispatch(setOpenFilesAction(filtered));
   }
 
   useEffect(() => {
@@ -52,14 +62,14 @@ function ContextMenu({ position: { x, y }, setShowMenu }: IProps) {
         <li
           className="text-gray-400 block px-4 py-2 text-sm cursor-pointer hover:bg-gray-700 duration-300 rounded-sm"
           role="menuitem"
-        onClick={onClose}
+          onClick={onClose}
         >
           Close
         </li>
         <li
           className="text-gray-400 block px-4 py-2 text-sm cursor-pointer hover:bg-gray-700 duration-300 rounded-sm"
           role="menuitem"
-        onClick={onCloseAll}
+          onClick={onCloseAll}
         >
           Close All
         </li>
